@@ -1,3 +1,6 @@
+import React from "react";
+import data from './data'
+
 function App() {
   return (
     <div className="grid-container">
@@ -15,204 +18,36 @@ function App() {
       <main>
         <div>
           <div className="row center">
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
+            {data.products.map((product) => (
+              <div className="card">
                 <a href="product.html">
-                  <h2>Red Onion</h2>
+                  <img className="medium" src="./images/p1.jpg" alt="product" />
                 </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
+                <div className="card-body">
+                  <a href="product.html">
+                    <h2>{product.name}</h2>
+                  </a>
+                  <div className="rating">
+                    <span>
+                      <i className="fa fa-star"></i>
+                    </span>
+                    <span>
+                      <i className="fa fa-star"></i>
+                    </span>
+                    <span>
+                      <i className="fa fa-star"></i>
+                    </span>
+                    <span>
+                      <i className="fa fa-star"></i>
+                    </span>
+                    <span>
+                      <i className="fa fa-star"></i>
+                    </span>
+                  </div>
+                  <div className="price">$120</div>
                 </div>
-                <div className="price">$120</div>
               </div>
-            </div>
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
-                <a href="product.html">
-                  <h2>Red Onion</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                </div>
-                <div className="price">$120</div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
-                <a href="product.html">
-                  <h2>Red Onion</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                </div>
-                <div className="price">$120</div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
-                <a href="product.html">
-                  <h2>Red Onion</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                </div>
-                <div className="price">$120</div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
-                <a href="product.html">
-                  <h2>Red Onion</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                </div>
-                <div className="price">$120</div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="product.html">
-                <img className="medium" src="./images/p1.jpg" alt="product" />
-              </a>
-              <div className="card-body">
-                <a href="product.html">
-                  <h2>Red Onion</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star"></i>{" "}
-                  </span>
-                  <span>
-                    {" "}
-                    <i className="fa fa-star-half-o"></i>{" "}
-                  </span>
-                </div>
-                <div className="price">$120</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </main>
