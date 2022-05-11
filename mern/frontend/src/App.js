@@ -1,58 +1,35 @@
-import React from "react";
-import data from './data'
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeView from './views/HomeView';
+import ProductView from './views/ProductView';
+
 
 function App() {
   return (
-    <div className="grid-container">
-      <header className="row">
-        <div>
-          <a className="brand" href="index.html">
-            BUDI
-          </a>
-        </div>
-        <div>
-          <a href="cart.html">Cart</a>
-          <a href="signin.html">Sign In</a>
-        </div>
-      </header>
-      <main>
-        <div>
-          <div className="row center">
-            {data.products.map((product) => (
-              <div className="card">
-                <a href="product.html">
-                  <img className="medium" src="./images/p1.jpg" alt="product" />
-                </a>
-                <div className="card-body">
-                  <a href="product.html">
-                    <h2>{product.name}</h2>
-                  </a>
-                  <div className="rating">
-                    <span>
-                      <i className="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i className="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i className="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i className="fa fa-star"></i>
-                    </span>
-                    <span>
-                      <i className="fa fa-star"></i>
-                    </span>
-                  </div>
-                  <div className="price">$120</div>
-                </div>
-              </div>
-            ))}
+    <BrowserRouter>
+      
+      <div className="grid-container">
+        <header className="row">
+          <div>
+            <a className="brand" href="/">
+              BUDI
+            </a>
           </div>
-        </div>
-      </main>
-      <footer className="row center">All right reserved</footer>
-    </div>
+          <div>
+            <a href="/cart">Cart</a>
+            <a href="/signin">Sign In</a>
+          </div>
+        </header>
+        <main>
+          <Routes>
+          <Route path='/' element={<HomeView/>} exact />
+            <Route path='/product/:id' element={<ProductView/>} />
+            </Routes>
+        </main>
+        <footer className="row center">All right reserved</footer>
+      </div>
+    </BrowserRouter>
+
   );
 }
 
