@@ -1,8 +1,8 @@
 const data = {
   products: [
     {
-      name: 'Domate',
-      slug: 'domate',
+      name: 'Qepe',
+      slug: 'qepe',
       category: 'perime',
       image: '/images/p1.jpg', // 679px × 829px
       price: 120,
@@ -25,8 +25,8 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      name: 'Domate',
-      slug: 'domate',
+      name: 'Trangull',
+      slug: 'trangull',
       category: 'perime',
       image: '/images/p1.jpg', // 679px × 829px
       price: 120,
@@ -37,8 +37,8 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      name: 'Domate',
-      slug: 'domate',
+      name: 'Patate',
+      slug: 'patate',
       category: 'perime',
       image: '/images/p1.jpg', // 679px × 829px
       price: 120,
