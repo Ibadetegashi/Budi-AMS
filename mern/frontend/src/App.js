@@ -1,30 +1,20 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomeView from "./views/HomeView";
-import ProductView from "./views/ProductView";
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import HomeView from './Views/HomeView';
+import ProductView from './Views/ProductView';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="grid-container">
-        <header className="row">
-          <div>
-            <a className="brand" href="/">
-              BUDI
-            </a>
-          </div>
-          <div>
-            <a href="/cart">Cart</a>
-            <a href="/signin">Sign In</a>
-          </div>
+     <BrowserRouter>
+      <div>
+        <header>
+          <Link to="/">amazona</Link>
         </header>
         <main>
           <Routes>
-            <Route path="/" element={<HomeView />} exact />
-            <Route path="/product/:id" element={<ProductView />} />
+            <Route path="/product/:slug" element={<ProductView />} />
+            <Route path="/" element={<HomeView />} />
           </Routes>
         </main>
-        <footer className="row center">All right reserved</footer>
       </div>
     </BrowserRouter>
   );
