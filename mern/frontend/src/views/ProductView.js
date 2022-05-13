@@ -23,7 +23,7 @@ export default function ProductView(props) {
             </li>
             <li>
               <Rating
-                rating={product.rating}
+                raiting={product.raiting}
                 numReviews={product.numReviews}
               ></Rating>
             </li>
