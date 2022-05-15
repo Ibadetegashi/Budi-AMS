@@ -5,14 +5,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('bravo BUDI e konektove databazen');
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+// mongoose
+//   .connect(process.env.MONGODB_URI)
+//   .then(() => {
+//     console.log('bravo BUDI e konektove databazen');
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
 
 const app = express();
 // test
