@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import HomeView from "./Views/HomeView";
-import ProductView from "./Views/ProductView";
+import HomeView from "./views/HomeView";
+import ProductView from "./views/ProductView";
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
-import CartView from './Views/CartView';
+import CartView from './views/CartView';
 
 function App() {
   const { state } = useContext(Store);
