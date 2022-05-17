@@ -1,7 +1,23 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Ibadete',
+      email: 'admin@ams.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+    },
+    {
+      name: 'Fatoni',
+      email: 'user@ams.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
-      _id: '1',
+      //_id: '1',
       name: 'Qepe',
       slug: 'qepe',
       category: 'perime',
@@ -14,7 +30,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: '2',
+      //_id: '2',
       name: 'Domate',
       slug: 'domate',
       category: 'perime',
@@ -27,7 +43,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: '3',
+      //_id: '3',
       name: 'Trangull',
       slug: 'trangull',
       category: 'perime',
@@ -40,7 +56,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: '4',
+      //_id: '4',
       name: 'Patate',
       slug: 'patate',
       category: 'perime',
