@@ -15,6 +15,7 @@ import CartView from './views/CartView';
 import SigninView from "./views/SigninView";
 import ShippingAddresView from './views/ShippingAddresView';
 import SignupView from './views/SignupView';
+import PaymentMethodView from "./views/PaymentMethodView";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
   };
   return (
     <BrowserRouter>
@@ -83,6 +85,7 @@ function App() {
                 path="/shipping"
                 element={<ShippingAddresView />}
               ></Route>
+              <Route path="/payment" element={<PaymentMethodView />}></Route>
             </Routes>
           </Container>
         </main>
