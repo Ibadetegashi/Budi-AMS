@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import CartView from './views/CartView';
 import SigninView from "./views/SigninView";
+import ShippingAddresView from './views/ShippingAddresView';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
   };
   return (
     <BrowserRouter>
@@ -75,6 +77,10 @@ function App() {
               <Route path="/cart" element={<CartView />} />
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
+              <Route
+                path="/shipping"
+                element={<ShippingAddresView />}
+              ></Route>
             </Routes>
           </Container>
         </main>
