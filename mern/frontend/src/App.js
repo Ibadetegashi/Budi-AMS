@@ -24,6 +24,7 @@ import AdminRoute from './components/AdminRoute';
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
 import UserEditView from "./views/UserEditView";
+import OrderView from "./views/OrderView";
 
 function App() {
 
@@ -106,6 +107,7 @@ function App() {
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
               <Route path="/placeorder" element={<PlaceOrderView/>} />
+             {/* <Route path="/order/:id" element={<OrderView/>} /> */}
               {/* <Route
                 path="/profile"
                 element={
@@ -118,7 +120,7 @@ function App() {
                 path="/order/:id"
                 element={
                   <AuthRoute>
-                    {/* <OrderView /> */}
+                    <OrderView />
                   </AuthRoute>
                 }
               ></Route>
