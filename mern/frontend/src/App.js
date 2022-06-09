@@ -21,6 +21,7 @@ import DashboardView from './views/DashboardView';
 import AdminRoute from './components/AdminRoute';
 import ProfileView from './views/ProfileView';
 
+import PlaceOrderView from "./views/PlaceOrderView";
 
 function App() {
 
@@ -101,7 +102,8 @@ function App() {
               <Route path="/cart" element={<CartView />} />
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
-              <Route path="signup" element={<SignupView />} />
+              <Route path="/signup" element={<SignupView />} />
+              <Route path="/placeorder" element={<PlaceOrderView/>} />
               <Route
                 path="/profile"
                 element={
