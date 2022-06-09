@@ -22,6 +22,7 @@ import AdminRoute from './components/AdminRoute';
 import ProfileView from './views/ProfileView';
 
 import PlaceOrderView from "./views/PlaceOrderView";
+import UserListView from "./views/UserListView";
 
 function App() {
 
@@ -104,14 +105,14 @@ function App() {
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
               <Route path="/placeorder" element={<PlaceOrderView/>} />
-              <Route
+              {/* <Route
                 path="/profile"
                 element={
                   <AuthRoute>
                     <ProfileView />
                   </AuthRoute>
                 }
-              />
+              /> */}
               <Route
                 path="/order/:id"
                 element={
@@ -138,6 +139,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <DashboardView />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/userlist"
+                element={
+                  <AdminRoute>
+                    <UserListView />
                   </AdminRoute>
                 }
               ></Route>
