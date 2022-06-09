@@ -16,6 +16,7 @@ import SigninView from "./views/SigninView";
 import ShippingAddresView from './views/ShippingAddresView';
 import SignupView from './views/SignupView';
 import PaymentMethodView from "./views/PaymentMethodView";
+import PlaceOrderView from "./views/PlaceOrderView";
 
 function App() {
 
@@ -80,7 +81,8 @@ function App() {
               <Route path="/cart" element={<CartView />} />
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
-              <Route path="signup" element={<SignupView />} />
+              <Route path="/signup" element={<SignupView />} />
+              <Route path="/placeorder" element={<PlaceOrderView/>} />
               <Route
                 path="/shipping"
                 element={<ShippingAddresView />}
