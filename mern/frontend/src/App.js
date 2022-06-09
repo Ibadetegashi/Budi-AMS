@@ -19,10 +19,11 @@ import PaymentMethodView from "./views/PaymentMethodView";
 import AuthRoute from './components/AuthRoute';
 import DashboardView from './views/DashboardView';
 import AdminRoute from './components/AdminRoute';
-import ProfileView from './views/ProfileView';
+// import ProfileView from './views/ProfileView';
 
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
+import UserEditView from "./views/UserEditView";
 
 function App() {
 
@@ -150,6 +151,15 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+              <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEditView />
+                  </AdminRoute>
+                }
+              ></Route>
+
             </Routes>
           </Container>
         </main>
