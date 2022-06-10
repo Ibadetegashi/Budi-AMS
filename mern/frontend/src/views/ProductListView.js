@@ -1,7 +1,3 @@
-
-View - Code - Changes
-https://github.com/basir/amazona/pull/48/files
-
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
