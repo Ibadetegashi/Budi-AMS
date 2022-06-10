@@ -24,7 +24,9 @@ import AdminRoute from './components/AdminRoute';
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
 import UserEditView from "./views/UserEditView";
+import ProductListView from "./views/ProductListView";
 import OrderView from "./views/OrderView";
+import SearchView from "./views/SearchView";
 
 function App() {
 
@@ -83,13 +85,13 @@ function App() {
                     <LinkContainer to="/admin/dashboard">
                       <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/productlist">
+                    <LinkContainer to="/admin/products">
                       <NavDropdown.Item>Products</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/orderlist">
+                    <LinkContainer to="/admin/orders">
                       <NavDropdown.Item>Orders</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/userlist">
+                    <LinkContainer to="/admin/users">
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
@@ -106,7 +108,8 @@ function App() {
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
-              <Route path="/placeorder" element={<PlaceOrderView/>} />
+              <Route path="/placeorder" element={<PlaceOrderView />} />
+              <Route path="/search" element={<SearchView />} />
              {/* <Route path="/order/:id" element={<OrderView/>} /> */}
               {/* <Route
                 path="/profile"
@@ -146,7 +149,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/admin/userlist"
+                path="/admin/users"
                 element={
                   <AdminRoute>
                     <UserListView />
@@ -161,7 +164,14 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductListView />
+                  </AdminRoute>
+                }
+              ></Route>
             </Routes>
           </Container>
         </main>
