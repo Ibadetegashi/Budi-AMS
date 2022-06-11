@@ -16,7 +16,17 @@ import SigninView from "./views/SigninView";
 import ShippingAddresView from './views/ShippingAddresView';
 import SignupView from './views/SignupView';
 import PaymentMethodView from "./views/PaymentMethodView";
+import AuthRoute from './components/AuthRoute';
+import DashboardView from './views/DashboardView';
+import AdminRoute from './components/AdminRoute';
+// import ProfileView from './views/ProfileView';
+
 import PlaceOrderView from "./views/PlaceOrderView";
+import UserListView from "./views/UserListView";
+import UserEditView from "./views/UserEditView";
+import ProductListView from "./views/ProductListView";
+import OrderView from "./views/OrderView";
+import SearchView from "./views/SearchView";
 
 function App() {
 
@@ -70,6 +80,22 @@ function App() {
                     Sign In
                   </Link> 
                 )}
+                {userInfo && userInfo.isAdmin && (
+                  <NavDropdown title="Admin" id="admin-nav-dropdown">
+                    <LinkContainer to="/admin/dashboard">
+                      <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/products">
+                      <NavDropdown.Item>Products</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/orders">
+                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/users">
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                )}
               </Nav>
             </Container>
           </Navbar>
@@ -82,12 +108,70 @@ function App() {
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
-              <Route path="/placeorder" element={<PlaceOrderView/>} />
+              <Route path="/placeorder" element={<PlaceOrderView />} />
+              <Route path="/search" element={<SearchView />} />
+             {/* <Route path="/order/:id" element={<OrderView/>} /> */}
+              {/* <Route
+                path="/profile"
+                element={
+                  <AuthRoute>
+                    <ProfileView />
+                  </AuthRoute>
+                }
+              /> */}
+              <Route
+                path="/order/:id"
+                element={
+                  <AuthRoute>
+                    <OrderView />
+                  </AuthRoute>
+                }
+              ></Route>
+              <Route
+                path="/orderhistory"
+                element={
+                  <AuthRoute>
+                    {/* <OrderHistoryView /> */}
+                  </AuthRoute>
+                }
+              ></Route>
               <Route
                 path="/shipping"
                 element={<ShippingAddresView />}
               ></Route>
               <Route path="/payment" element={<PaymentMethodView />}></Route>
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <DashboardView />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/users"
+                element={
+                  <AdminRoute>
+                    <UserListView />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEditView />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductListView />
+                  </AdminRoute>
+                }
+              ></Route>
             </Routes>
           </Container>
         </main>
