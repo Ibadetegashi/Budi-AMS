@@ -68,7 +68,7 @@ function App() {
                 ) : (
                   <Link className="nav-link" to="/signin">
                     Sign In
-                  </Link>
+                  </Link> 
                 )}
               </Nav>
             </Container>
