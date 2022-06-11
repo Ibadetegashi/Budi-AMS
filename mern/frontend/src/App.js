@@ -110,7 +110,7 @@ function App() {
               <Route path="/signup" element={<SignupView />} />
               <Route path="/placeorder" element={<PlaceOrderView />} />
               <Route path="/search" element={<SearchView />} />
-             {/* <Route path="/order/:id" element={<OrderView/>} /> */}
+              <Route path="/order/:id" element={<OrderView/>} /> 
               {/* <Route
                 path="/profile"
                 element={
