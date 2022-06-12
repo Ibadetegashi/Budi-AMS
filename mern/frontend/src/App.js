@@ -32,6 +32,7 @@ import Button from 'react-bootstrap/Button';
 import { getError } from './utils';
 import axios from 'axios';
 import SearchBox from './components/SearchBox';
+import OrderListView from './views/OrderListView';
 
 function App() {
 
@@ -234,7 +235,14 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-              
+                <Route
+                path="/admin/orders"
+                element={
+                  <AdminRoute>
+                    <OrderListView />
+                  </AdminRoute>
+                }
+              ></Route>
               <Route
                 path="/admin/products"
                 element={
