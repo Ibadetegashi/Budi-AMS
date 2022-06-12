@@ -20,6 +20,7 @@ import AuthRoute from './components/AuthRoute';
 import DashboardView from './views/DashboardView';
 import AdminRoute from './components/AdminRoute';
 import ProfileView from './views/ProfileView';
+import ProductEditView from './views/ProductEditView';
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
 import UserEditView from "./views/UserEditView";
@@ -163,6 +164,14 @@ function App() {
         <main>
           <Container className="mt-3">
             <Routes>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <ProductEditView />
+                  </AdminRoute>
+                }
+              ></Route>
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
               <Route path="/" element={<HomeView />} />
@@ -187,6 +196,7 @@ function App() {
                   </AuthRoute>
                 }
               ></Route>
+              
               <Route
                 path="/orderhistory"
                 element={
@@ -224,6 +234,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+              
               <Route
                 path="/admin/products"
                 element={
@@ -232,6 +243,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+              
             </Routes>
           </Container>
         </main>

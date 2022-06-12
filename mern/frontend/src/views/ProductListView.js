@@ -107,7 +107,7 @@ export default function ProductListView() {
 
             {loadingCreate && <LoadingBox></LoadingBox>}
 
-            
+
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
@@ -121,7 +121,8 @@ export default function ProductListView() {
                                 <th>NAME</th>
                                 <th>PRICE</th>
                                 <th>CATEGORY</th>
-                                <th>BRAND</th>
+                                        <th>BRAND</th>
+                                        <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +133,15 @@ export default function ProductListView() {
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
                                     <td>{product.brand}</td>
+                                    <td>
+                                        <Button
+                                            type="button"
+                                            variant="light"
+                                            onClick={() => navigate(`/admin/product/${product._id}`)}
+                                        >
+                                            Edit
+                                        </Button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
