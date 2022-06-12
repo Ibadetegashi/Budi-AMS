@@ -19,7 +19,7 @@ import PaymentMethodView from "./views/PaymentMethodView";
 import AuthRoute from './components/AuthRoute';
 import DashboardView from './views/DashboardView';
 import AdminRoute from './components/AdminRoute';
-// import ProfileView from './views/ProfileView';
+import ProfileView from './views/ProfileView';
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
 import UserEditView from "./views/UserEditView";
@@ -151,14 +151,14 @@ function App() {
               <Route path="/placeorder" element={<PlaceOrderView />} />
               <Route path="/search" element={<SearchView />} />
               <Route path="/order/:id" element={<OrderView/>} /> 
-              {/* <Route
+               <Route
                 path="/profile"
                 element={
                   <AuthRoute>
                     <ProfileView />
                   </AuthRoute>
                 }
-              /> */}
+              /> 
               <Route
                 path="/order/:id"
                 element={
