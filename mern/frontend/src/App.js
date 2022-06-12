@@ -5,11 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react';
+import { useContext, useState,useEffect } from 'react';
 import { Store } from './Store';
 import CartView from './views/CartView';
 import SigninView from "./views/SigninView";
@@ -27,6 +27,10 @@ import ProductListView from "./views/ProductListView";
 import OrderView from "./views/OrderView";
 import SearchView from "./views/SearchView";
 import OrderHistoryView from './views/OrderHistoryView';
+import Button from 'react-bootstrap/Button';
+import { getError } from './utils';
+import axios from 'axios';
+import SearchBox from './components/SearchBox';
 
 function App() {
 
@@ -39,32 +43,48 @@ function App() {
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
+
   };
+
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/categories`);
+        setCategories(data);
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    };
+    fetchCategories();
+  }, []);  
   return (
     <BrowserRouter>
       <div
-        /*className={
+        className={
           sidebarIsOpen
             ? 'd-flex flex-column site-container active-cont'
             : 'd-flex flex-column site-container'
-        }*/
+        }
       >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-              {/* <Button
+               <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button> */}
+              </Button> 
               <LinkContainer to="/">
                 <Navbar.Brand>AMS</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                {/* <SearchBox /> */}
+                <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
@@ -118,17 +138,17 @@ function App() {
           </Navbar>
         </header>
         <div
-          // className={
-          //   sidebarIsOpen
-          //     ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-          //     : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-          // }
+          className={
+            sidebarIsOpen
+              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
+              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+          }
         >
           <Nav className="flex-column text-white w-100 p-2">
             <Nav.Item>
               <strong>Categories</strong>
             </Nav.Item>
-            {/* {categories.map((category) => (
+            {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
                   to={`/search?category=${category}`}
@@ -137,7 +157,7 @@ function App() {
                   <Nav.Link>{category}</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
-            ))} */}
+            ))}
           </Nav>
         </div>
         <main>
