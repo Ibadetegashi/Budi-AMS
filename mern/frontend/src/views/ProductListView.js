@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -34,23 +34,60 @@ const reducer = (state, action) => {
             };
         case 'CREATE_FAIL':
             return { ...state, loadingCreate: false };
+        
+    
 
+        case 'DELETE_REQUEST':
+            return { ...state, loadingDelete: true, successDelete: false };
+        case 'DELETE_SUCCESS':
+            return {
+                ...state,
+                loadingDelete: false,
+                successDelete: true,
+            };
+        case 'DELETE_FAIL':
+            return { ...state, loadingDelete: false, successDelete: false };
+
+        case 'DELETE_RESET':
+            return { ...state, loadingDelete: false, successDelete: false };
+        case 'UPLOAD_REQUEST':
+            return { ...state, loadingUpload: true, errorUpload: '' };
+        case 'UPLOAD_SUCCESS':
+            return {
+                ...state,
+                loadingUpload: false,
+                errorUpload: '',
+            };
+        case 'UPLOAD_FAIL':
+            return { ...state, loadingUpload: false, errorUpload: action.payload };
         default:
             return state;
     }
 };
 
 export default function ProductListView() {
-    const [{ loading, error, products, pages, loadingCreate }, dispatch] =
-        useReducer(reducer, {
-            loading: true,
-            error: '',
-        });
+    const [
+        {
+            loading,
+            error,
+            products,
+            pages,
+            loadingCreate,
+            loadingDelete,
+            successDelete,
+            loadingUpdate, loadingUpload
+        },
+        dispatch,
+    ] = useReducer(reducer, {
+        loading: true,
+        error: '',
+    });
+
     const navigate = useNavigate();
     const { search } = useLocation();
     const sp = new URLSearchParams(search);
     const page = sp.get('page') || 1;
-
+    const [image, setImage] = useState('');
     const { state } = useContext(Store);
     const { userInfo } = state;
 
@@ -64,8 +101,12 @@ export default function ProductListView() {
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (err) { }
         };
-        fetchData();
-    }, [page, userInfo]);
+        if (successDelete) {
+            dispatch({ type: 'DELETE_RESET' });
+        } else {
+            fetchData();
+        }
+    }, [page, userInfo, successDelete]);
 
 
     const createHandler = async () => {
@@ -90,6 +131,44 @@ export default function ProductListView() {
             }
         }
     };
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', file);
+        try {
+            dispatch({ type: 'UPLOAD_REQUEST' });
+            const { data } = await axios.post('/api/upload', bodyFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    authorization: `Bearer ${userInfo.token}`,
+                },
+            });
+            dispatch({ type: 'UPLOAD_SUCCESS' });
+
+            toast.success('Image uploaded successfully');
+            setImage(data.secure_url);
+        } catch (err) {
+            toast.error(getError(err));
+            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+        }
+    };
+    const deleteHandler = async (product) => {
+        if (window.confirm('Are you sure to delete?')) {
+            try {
+                await axios.delete(`/api/products/${product._id}`, {
+                    headers: { Authorization: `Bearer ${userInfo.token}` },
+                });
+                toast.success('product deleted successfully');
+                dispatch({ type: 'DELETE_SUCCESS' });
+            } catch (err) {
+                toast.error(getError(error));
+                dispatch({
+                    type: 'DELETE_FAIL',
+                });
+            }
+        }
+    };
+
     return (
         <div>
             <Row>
@@ -141,7 +220,16 @@ export default function ProductListView() {
                                         >
                                             Edit
                                         </Button>
+                                        &nbsp;
+                                        <Button
+                                            type="button"
+                                            variant="light"
+                                            onClick={() => deleteHandler(product)}
+                                        >
+                                            Delete
+                                        </Button>
                                     </td>
+                                   
                                 </tr>
                             ))}
                         </tbody>
