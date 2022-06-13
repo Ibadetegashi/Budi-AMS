@@ -42,7 +42,12 @@ export default function PlaceOrderView() {
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
-  cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
+  if(cart.itemsPrice < 50 ){
+    cart.shippingPrice = round2(2);
+  }else{
+    cart.shippingPrice = cart.itemsPrice > 100 ? round2(1) : round2(0);
+  }
+  
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
