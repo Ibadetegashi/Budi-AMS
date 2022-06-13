@@ -1,51 +1,51 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import HomeView from "./views/HomeView";
 import ProductView from "./views/ProductView";
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Badge from 'react-bootstrap/Badge';
-import Nav from 'react-bootstrap/Nav';
-import { ToastContainer,toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Container from 'react-bootstrap/Container';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useContext, useState,useEffect } from 'react';
-import { Store } from './Store';
-import CartView from './views/CartView';
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Badge from "react-bootstrap/Badge";
+import Nav from "react-bootstrap/Nav";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
+import { useContext, useState, useEffect } from "react";
+import { Store } from "./Store";
+import CartView from "./views/CartView";
 import SigninView from "./views/SigninView";
-import ShippingAddresView from './views/ShippingAddresView';
-import SignupView from './views/SignupView';
+import ShippingAddresView from "./views/ShippingAddresView";
+import SignupView from "./views/SignupView";
 import PaymentMethodView from "./views/PaymentMethodView";
-import AuthRoute from './components/AuthRoute';
-import DashboardView from './views/DashboardView';
-import AdminRoute from './components/AdminRoute';
-import ProfileView from './views/ProfileView';
-import ProductEditView from './views/ProductEditView';
+import AuthRoute from "./components/AuthRoute";
+import DashboardView from "./views/DashboardView";
+import AdminRoute from "./components/AdminRoute";
+import ProfileView from "./views/ProfileView";
+import ProductEditView from "./views/ProductEditView";
 import PlaceOrderView from "./views/PlaceOrderView";
 import UserListView from "./views/UserListView";
 import UserEditView from "./views/UserEditView";
 import ProductListView from "./views/ProductListView";
 import OrderView from "./views/OrderView";
 import SearchView from "./views/SearchView";
-import OrderHistoryView from './views/OrderHistoryView';
-import Button from 'react-bootstrap/Button';
-import { getError } from './utils';
-import axios from 'axios';
-import SearchBox from './components/SearchBox';
-import OrderListView from './views/OrderListView';
+import OrderHistoryView from "./views/OrderHistoryView";
+import Button from "react-bootstrap/Button";
+import { getError } from "./utils";
+import axios from "axios";
+import SearchBox from "./components/SearchBox";
+import OrderListView from "./views/OrderListView";
+import MapView from "./views/MapView";
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
+  const { fullBox, cart, userInfo } = state;
 
   const signoutHandler = () => {
-    ctxDispatch({ type: 'USER_SIGNOUT' });
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('shippingAddress');
-    localStorage.removeItem('paymentMethod');
-    window.location.href = '/signin';
-
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+    window.location.href = "/signin";
   };
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -61,26 +61,30 @@ function App() {
       }
     };
     fetchCategories();
-  }, []);  
+  }, []);
   return (
     <BrowserRouter>
       <div
         className={
           sidebarIsOpen
-            ? 'd-flex flex-column site-container active-cont'
-            : 'd-flex flex-column site-container'
+            ? fullBox
+              ? "site-container active-cont d-flex flex-column full-box"
+              : "site-container active-cont d-flex flex-column"
+            : fullBox
+            ? "site-container d-flex flex-column full-box"
+            : "site-container d-flex flex-column"
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-               <Button
+              <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button> 
+              </Button>
               <LinkContainer to="/">
                 <Navbar.Brand>AMS</Navbar.Brand>
               </LinkContainer>
@@ -142,8 +146,8 @@ function App() {
         <div
           className={
             sidebarIsOpen
-              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+              ? "active-nav side-navbar d-flex justify-content-between flex-wrap flex-column"
+              : "side-navbar d-flex justify-content-between flex-wrap flex-column"
           }
         >
           <Nav className="flex-column text-white w-100 p-2">
@@ -178,17 +182,25 @@ function App() {
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
+              <Route
+                path="/map"
+                element={
+                  <ProtectedRoute>
+                    <MapView />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/placeorder" element={<PlaceOrderView />} />
               <Route path="/search" element={<SearchView />} />
-              <Route path="/order/:id" element={<OrderView/>} /> 
-               <Route
+              <Route path="/order/:id" element={<OrderView />} />
+              <Route
                 path="/profile"
                 element={
                   <AuthRoute>
                     <ProfileView />
                   </AuthRoute>
                 }
-              /> 
+              />
               <Route
                 path="/order/:id"
                 element={
@@ -197,7 +209,7 @@ function App() {
                   </AuthRoute>
                 }
               ></Route>
-              
+
               <Route
                 path="/orderhistory"
                 element={
@@ -206,10 +218,7 @@ function App() {
                   </AuthRoute>
                 }
               ></Route>
-              <Route
-                path="/shipping"
-                element={<ShippingAddresView />}
-              ></Route>
+              <Route path="/shipping" element={<ShippingAddresView />}></Route>
               <Route path="/payment" element={<PaymentMethodView />}></Route>
               <Route
                 path="/admin/dashboard"
@@ -235,7 +244,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-                <Route
+              <Route
                 path="/admin/orders"
                 element={
                   <AdminRoute>
@@ -251,12 +260,11 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-              
             </Routes>
           </Container>
         </main>
         <footer>
-          <div className="text-center" > All right reserved! </div>
+          <div className="text-center"> All right reserved! </div>
         </footer>
       </div>
     </BrowserRouter>
