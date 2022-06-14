@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -73,9 +73,8 @@ export default function ProductListView() {
             products,
             pages,
             loadingCreate,
-            loadingDelete,
             successDelete,
-            loadingUpdate, loadingUpload
+            
         },
         dispatch,
     ] = useReducer(reducer, {
@@ -87,7 +86,7 @@ export default function ProductListView() {
     const { search } = useLocation();
     const sp = new URLSearchParams(search);
     const page = sp.get('page') || 1;
-    const [image, setImage] = useState('');
+    
     const { state } = useContext(Store);
     const { userInfo } = state;
 
@@ -131,27 +130,27 @@ export default function ProductListView() {
             }
         }
     };
-    const uploadFileHandler = async (e) => {
-        const file = e.target.files[0];
-        const bodyFormData = new FormData();
-        bodyFormData.append('file', file);
-        try {
-            dispatch({ type: 'UPLOAD_REQUEST' });
-            const { data } = await axios.post('/api/upload', bodyFormData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    authorization: `Bearer ${userInfo.token}`,
-                },
-            });
-            dispatch({ type: 'UPLOAD_SUCCESS' });
+    // const uploadFileHandler = async (e) => {
+    //     const file = e.target.files[0];
+    //     const bodyFormData = new FormData();
+    //     bodyFormData.append('file', file);
+    //     try {
+    //         dispatch({ type: 'UPLOAD_REQUEST' });
+    //         const { data } = await axios.post('/api/upload', bodyFormData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //                 authorization: `Bearer ${userInfo.token}`,
+    //             },
+    //         });
+    //         dispatch({ type: 'UPLOAD_SUCCESS' });
 
-            toast.success('Image uploaded successfully');
-            setImage(data.secure_url);
-        } catch (err) {
-            toast.error(getError(err));
-            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
-        }
-    };
+    //         toast.success('Image uploaded successfully');
+    //         setImage(data.secure_url);
+    //     } catch (err) {
+    //         toast.error(getError(err));
+    //         dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+    //     }
+    // };
     const deleteHandler = async (product) => {
         if (window.confirm('Are you sure to delete?')) {
             try {

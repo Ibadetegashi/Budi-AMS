@@ -64,11 +64,17 @@ export default function DashboardView() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.users && summary.users[0]
-                      ? summary.users[0].numUsers
-                      : 0}
+                    <div className="summary-title color1">
+                      <span>
+                        <i className="fa fa-users" /> Users
+                      </span>
+                    </div>
+
                   </Card.Title>
-                  <Card.Text> Users</Card.Text>
+                  <div className="summary-body"> {summary.users && summary.users[0]
+                    ? summary.users[0].numUsers
+                    : 0}</div>
+
                 </Card.Body>
               </Card>
             </Col>
@@ -76,24 +82,42 @@ export default function DashboardView() {
               <Card>
                 <Card.Body>
                   <Card.Title>
+                    <div className="summary-title color2">
+                      <span>
+                        <i className="fa fa-shopping-cart" /> Orders
+                      </span>
+                    </div>
+
+                  </Card.Title>
+                  <div className="summary-body">
+
                     {summary.orders && summary.users[0]
                       ? summary.orders[0].numOrders
                       : 0}
-                  </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  </div>
+
                 </Card.Body>
               </Card>
             </Col>
             <Col md={4}>
               <Card>
                 <Card.Body>
-                  <Card.Title>
-                    $
-                    {summary.orders && summary.users[0]
-                      ? summary.orders[0].totalSales.toFixed(2)
-                      : 0}
-                  </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                      <Card.Title>
+                        <div className="summary-title color3">
+                          <span>
+                            <i class="	fa fa-dollar" aria-hidden="true"></i> Sales
+                          </span>
+                        </div>
+                       
+                 
+                      </Card.Title>
+                      <div className="summary-body">
+                        $
+                        {summary.orders[0]
+                          ? summary.orders[0].totalSales.toFixed(2)
+                          : 0}
+                      </div>
+                
                 </Card.Body>
               </Card>
             </Col>

@@ -140,7 +140,7 @@ export default function ProductEditScreen() {
     //     }
     // };
      const [loadingUpload, setLoadingUpload] = useState(false);
-      const [errorUpload, setErrorUpload] = useState('');
+      const [ setErrorUpload] = useState('');
 
     // const userSignin = useSelector((state) => state.userSignin);
     // const { userInfo } = userSignin;
