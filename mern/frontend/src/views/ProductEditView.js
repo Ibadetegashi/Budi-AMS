@@ -144,8 +144,6 @@ export default function ProductEditScreen() {
             dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
         }
     };
-    // const [loadingUpload, setLoadingUpload] = useState(false);
- 
 
     // const userSignin = useSelector((state) => state.userSignin);
     // const { userInfo } = userSignin;
@@ -171,7 +169,13 @@ export default function ProductEditScreen() {
     //     }
     // };
 
-  //DELETE HANDLER
+    const deleteFileHandler = async (fileName, f) => {
+        console.log(fileName, f);
+        console.log(images);
+        console.log(images.filter((x) => x !== fileName));
+        setImages(images.filter((x) => x !== fileName));
+        toast.success('Image removed successfully. click Update to apply it');
+    };
     return (
         <Container className="small-container">
             <Helmet>
@@ -239,7 +243,16 @@ export default function ProductEditScreen() {
                             <Form.Group className="mb-3" controlId="additionalImage">
                                 <Form.Label>Additional Images</Form.Label>
                                 {images.length === 0 && <MessageBox>No image</MessageBox>}
-                               {/* delete */}
+                                <ListGroup variant="flush">
+                                    {images.map((x) => (
+                                        <ListGroup.Item key={x}>
+                                            {x}
+                                            <Button variant="light" onClick={() => deleteFileHandler(x)}>
+                                                <i className="fa fa-times-circle"></i>
+                                            </Button>
+                                        </ListGroup.Item>
+                                    ))}
+                                </ListGroup>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="additionalImageFile">
                                 <Form.Label>Upload Aditional Image</Form.Label>
