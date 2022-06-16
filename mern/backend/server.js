@@ -30,18 +30,22 @@ app.get('/api/keys/google', (req, res) => {
   res.send({ key: process.env.GOOGLE_API_KEY || '' });
 });
 
-app.use('/api/uploads', uploadRouter);
+app.use('/api/upload', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
-const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+//image old
+// const __dirname = path.resolve();
+// app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`serve at http://localhost:${port}`);
-});
+
+// const httpServer = http.Server(app);
+// const io = new Server(httpServer, { cors: { origin: '*' } });
+ app.listen(port, () => {
+   console.log(`serve at http://localhost:${port}`);
+ });

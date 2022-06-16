@@ -10,7 +10,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
-
+import ListGroup from 'react-bootstrap/ListGroup';
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
@@ -48,12 +48,12 @@ export default function ProductEditScreen() {
 
     const { state } = useContext(Store);
     const { userInfo } = state;
-    const [{ loading, error, loadingUpdate }, dispatch] =
+    const [{ loading, error, loadingUpdate,loadingUpload }, dispatch] =
         useReducer(reducer, {
             loading: true,
             error: '',
         });
-
+    const [images, setImages] = useState([]);
     const [name, setName] = useState('');
     const [slug, setSlug] = useState('');
     const [price, setPrice] = useState('');
@@ -72,6 +72,7 @@ export default function ProductEditScreen() {
                 setSlug(data.slug);
                 setPrice(data.price);
                 setImage(data.image);
+                setImages(data.images);
                 setCategory(data.category);
                 setCountInStock(data.countInStock);
                 setBrand(data.brand);
@@ -99,6 +100,7 @@ export default function ProductEditScreen() {
                     slug,
                     price,
                     image,
+                    images,
                     category,
                     brand,
                     countInStock,
@@ -118,51 +120,58 @@ export default function ProductEditScreen() {
             dispatch({ type: 'UPDATE_FAIL' });
         }
     };
-    // const uploadFileHandler = async (e) => {
-    //     const file = e.target.files[0];
-    //     const bodyFormData = new FormData();
-    //     bodyFormData.append('file', file);
-    //     try {
-    //         dispatch({ type: 'UPLOAD_REQUEST' });
-    //         const { data } = await axios.post('/api/uploads', bodyFormData, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //                 authorization: `Bearer ${userInfo.token}`,
-    //             },
-    //         });
-    //         dispatch({ type: 'UPLOAD_SUCCESS' });
-
-    //         toast.success('Image uploaded successfully');
-    //         setImage(data.secure_url);
-    //     } catch (err) {
-    //         toast.error(getError(err));
-    //         dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
-    //     }
-    // };
-     const [loadingUpload, setLoadingUpload] = useState(false);
-      const [ setErrorUpload] = useState('');
+    const uploadFileHandler = async (e, forImages) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', file);
+        try {
+            dispatch({ type: 'UPLOAD_REQUEST' });
+            const { data } = await axios.post('/api/upload', bodyFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    authorization: `Bearer ${userInfo.token}`,
+                },
+            });
+            dispatch({ type: 'UPLOAD_SUCCESS' });
+            if (forImages) {
+                setImages([...images, data.secure_url]);
+            } else {
+                setImage(data.secure_url);
+            }
+            toast.success('Image uploaded successfully. click Update to apply it');
+        } catch (err) {
+            toast.error(getError(err));
+            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+        }
+    };
+    // const [loadingUpload, setLoadingUpload] = useState(false);
+ 
 
     // const userSignin = useSelector((state) => state.userSignin);
     // const { userInfo } = userSignin;
-    const uploadFileHandler = async (e) => {
-        const file = e.target.files[0];
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', file);
-        setLoadingUpload(true);
-        try {
-            const { data } = await axios.post('/api/uploads', bodyFormData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${userInfo.token}`,
-                },
-            });
-            setImage(data);
-            setLoadingUpload(false);
-        } catch (error) {
-            setErrorUpload(error.message);
-            setLoadingUpload(false);
-        }
-    };
+
+    //SINGLE IMAGE OLD VERSION (MOS MA FSHINI!!)
+    // const uploadFileHandler = async (e) => {
+    //     const file = e.target.files[0];
+    //     const bodyFormData = new FormData();
+    //     bodyFormData.append('image', file);
+    //     setLoadingUpload(true);
+    //     try {
+    //         const { data } = await axios.post('/api/uploads', bodyFormData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //                 Authorization: `Bearer ${userInfo.token}`,
+    //             },
+    //         });
+    //         // setImage(data);
+    //         setLoadingUpload(false);
+    //     } catch (error) {
+    //         setErrorUpload(error.message);
+    //         setLoadingUpload(false);
+    //     }
+    // };
+
+  //DELETE HANDLER
     return (
         <Container className="small-container">
             <Helmet>
@@ -209,7 +218,7 @@ export default function ProductEditScreen() {
                         />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="imageFile">
-                                <Form.Label>Upload File</Form.Label>
+                                <Form.Label>Upload Image</Form.Label>
                                 <Form.Control type="file" onChange={uploadFileHandler} />
                                 {loadingUpload && <LoadingBox></LoadingBox>}
                             </Form.Group>
@@ -227,6 +236,19 @@ export default function ProductEditScreen() {
                                     <MessageBox variant="danger">{errorUpload}</MessageBox>
                                 )}
                             </div> */}
+                            <Form.Group className="mb-3" controlId="additionalImage">
+                                <Form.Label>Additional Images</Form.Label>
+                                {images.length === 0 && <MessageBox>No image</MessageBox>}
+                               {/* delete */}
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="additionalImageFile">
+                                <Form.Label>Upload Aditional Image</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    onChange={(e) => uploadFileHandler(e, true)}
+                                />
+                                {loadingUpload && <LoadingBox></LoadingBox>}
+                            </Form.Group>
                     <Form.Group className="mb-3" controlId="category">
                         <Form.Label>Category</Form.Label>
                         <Form.Control

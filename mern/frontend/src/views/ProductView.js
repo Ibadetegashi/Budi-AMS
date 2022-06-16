@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer,useContext } from 'react';
+import { useEffect, useReducer,useContext,useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
 function ProductView() {
   const navigate = useNavigate();
   const params = useParams();
+  const [selectedImage, setSelectedImage] = useState('');
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
@@ -74,7 +75,7 @@ function ProductView() {
         <Col md={6}>
           <img
             className="img-large"
-            src={product.image}
+            src={selectedImage ||  product.image}
             alt={product.name}
           ></img>
         </Col>
@@ -93,7 +94,25 @@ function ProductView() {
               ></Rating>
             </ListGroup.Item>
             <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
-            <ListGroup.Item>
+                <ListGroup.Item>
+                  <Row xs={1} md={2} className="g-2">
+                    {[product.image, ...product.images].map((x) => (
+                      <Col key={x}>
+                        <Card>
+                          <Button
+                            className="thumbnail"
+                            type="button"
+                            variant="light"
+                            onClick={() => setSelectedImage(x)}
+                          >
+                            <Card.Img variant="top" src={x} alt="product" />
+                          </Button>
+                        </Card>
+                      </Col>
+                    ))}
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
               Description:
               <p>{product.description}</p>
             </ListGroup.Item>

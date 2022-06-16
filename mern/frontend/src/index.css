@@ -163,3 +163,6 @@ main {
 .summary-title.color3 {
   background-color: #e0e0f0;
 }
+button.thumbnail {
+  padding: 0;
+}
