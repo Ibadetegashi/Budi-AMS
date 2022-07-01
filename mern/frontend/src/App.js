@@ -35,6 +35,7 @@ import SearchBox from "./components/SearchBox";
 import OrderListView from "./views/OrderListView";
 import MapView from "./views/MapView";
 import ProtectedRoute from './components/ProtectedRoute';
+import SellerRoute from './components/SellerRoute';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -71,8 +72,8 @@ function App() {
               ? "site-container active-cont d-flex flex-column full-box"
               : "site-container active-cont d-flex flex-column"
             : fullBox
-            ? "site-container d-flex flex-column full-box"
-            : "site-container d-flex flex-column"
+              ? "site-container d-flex flex-column full-box"
+              : "site-container d-flex flex-column"
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
@@ -121,6 +122,29 @@ function App() {
                     <Link className="nav-link" to="/signin">
                       Sign In
                     </Link>
+                  )}
+                  {userInfo && userInfo.isSeller && (
+                    // <div className="dropdown">
+                    //   <Link to="#admin">
+                    //     Seller <i className="fa fa-caret-down"></i>
+                    //   </Link>
+                    //   <ul className="dropdown-content">
+                    //     <li>
+                    //       <Link to="/productlist/seller">Products</Link>
+                    //     </li>
+                    //     <li>
+                    //       <Link to="/orderlist/seller">Orders</Link>
+                    //     </li>
+                    //   </ul>
+                    // </div>
+                    <NavDropdown title="Seller" id="admin-nav-dropdown">
+                      <LinkContainer to="/productlist/seller">
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/orderlist/seller">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
                   )}
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
@@ -182,6 +206,9 @@ function App() {
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
+              {/* <Route path="/seller/:id" element={<SellerView />}></Route> */}
+              <Route path="/seller/:id" component={SearchView}></Route>
+              
               <Route
                 path="/map"
                 element={
@@ -249,6 +276,7 @@ function App() {
                 element={
                   <AdminRoute>
                     <OrderListView />
+                    exact
                   </AdminRoute>
                 }
               ></Route>
@@ -257,9 +285,36 @@ function App() {
                 element={
                   <AdminRoute>
                     <ProductListView />
+                    exact
                   </AdminRoute>
                 }
               ></Route>
+
+              <Route
+                path="/productlist/seller"
+                element={
+                  <SellerRoute>
+                    <ProductListView />
+                  </SellerRoute>
+                }
+              ></Route>
+
+              <Route
+                path="/orderlist/seller"
+                element={
+                  <SellerRoute         >
+                    <OrderListView />
+                  </SellerRoute>
+                }
+              ></Route>
+              {/* <SellerRoute
+                path="/productlist/seller"
+                element={ProductListView}
+              ></SellerRoute>
+              <SellerRoute
+                path="/orderlist/seller"
+                element={OrderListView}
+              ></SellerRoute> */}
             </Routes>
           </Container>
         </main>
