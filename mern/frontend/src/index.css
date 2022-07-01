@@ -16,8 +16,9 @@ main {
   flex: 1;
 }
 .btn-primary,.btn-outline-primary {
-  background-color: #f0c040;
-  color: #000000;
+  background-color:#4E944F;
+  color: #ffff;
+  border:none ;
 }
 .products {
   display: flex;
@@ -26,7 +27,7 @@ main {
 }
 
 .rating span {
-  color: #ffc000;
+  color: #B4E197;
 }
 
 .product {
@@ -34,8 +35,12 @@ main {
   margin: 1rem;
 }
 .product img {
-  width: 100%;
-  max-width: 400px;
+  width: 50%;
+
+}
+.card-img-top{
+  max-height: 250px;
+  min-height: 250px;
 }
 .product-info {
   padding: 1rem;
@@ -44,7 +49,11 @@ main {
   max-width: 100%;
 }
 .img-thumbnail {
-  height: 80px;
+ max-height: 100px; 
+ min-height: 100px; 
+}
+.thumbnail{
+  background-color: rgb(151, 205, 151);
 }
 .small-container {
   max-width: 600px;
