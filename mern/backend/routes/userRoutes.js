@@ -71,7 +71,7 @@ userRouter.post(
           name: updatedUser.name,
           email: updatedUser.email,
           isAdmin: updatedUser.isAdmin,
-          isSeller: user.isSeller,
+          isSeller: updatedUser.isSeller,
           token: generateToken(updatedUser),
         });
       } else {
@@ -113,6 +113,7 @@ userRouter.put(
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       user.isAdmin = Boolean(req.body.isAdmin);
+      user.isSeller = Boolean(req.body.isSeller);
       const updatedUser = await user.save();
       res.send({ message: 'User Updated', user: updatedUser });
     } else {
