@@ -43,8 +43,8 @@ function HomeView() {
     };
     fetchData();
   }, []);
-return (
-    <div>
+  return (
+  <div>
        <Helmet>
         <title>BUDI</title>
       </Helmet>
