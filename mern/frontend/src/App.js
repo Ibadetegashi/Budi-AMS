@@ -36,6 +36,7 @@ import OrderListView from "./views/OrderListView";
 import MapView from "./views/MapView";
 import ProtectedRoute from './components/ProtectedRoute';
 import SellerRoute from './components/SellerRoute';
+import Footer from "./components/Footer";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -319,7 +320,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className="text-center"> All right reserved! </div>
+        <Footer></Footer>
         </footer>
       </div>
     </BrowserRouter>

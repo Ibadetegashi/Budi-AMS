@@ -48,6 +48,11 @@ main {
 .img-large{
   max-width: 100%;
 }
+.border-bottom{
+  background-color: #80af8081;
+  color: white;
+}
+
 .img-thumbnail {
  max-height: 100px; 
  min-height: 100px; 
