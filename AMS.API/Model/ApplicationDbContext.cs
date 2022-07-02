@@ -22,6 +22,7 @@ namespace AMS.API.Model
 
 
             public DbSet<Category> categories { get; set; }
-        }
+            public DbSet<Contact> Contacts { get; set; }
+    }
     }
 

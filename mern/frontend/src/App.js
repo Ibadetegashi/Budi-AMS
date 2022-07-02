@@ -35,6 +35,8 @@ import SearchBox from "./components/SearchBox";
 import OrderListView from "./views/OrderListView";
 import MapView from "./views/MapView";
 import ProtectedRoute from './components/ProtectedRoute';
+import SellerRoute from './components/SellerRoute';
+import Footer from "./components/Footer";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -63,6 +65,7 @@ function App() {
     fetchCategories();
   }, []);
   return (
+    
     <BrowserRouter>
       <div
         className={
@@ -71,14 +74,15 @@ function App() {
               ? "site-container active-cont d-flex flex-column full-box"
               : "site-container active-cont d-flex flex-column"
             : fullBox
-            ? "site-container d-flex flex-column full-box"
-            : "site-container d-flex flex-column"
+              ? "site-container d-flex flex-column full-box"
+              : "site-container d-flex flex-column"
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
+
               <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
@@ -93,7 +97,7 @@ function App() {
                 <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
-                    Cart
+                    <i className="fa fa-shopping-cart" />
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -121,6 +125,29 @@ function App() {
                     <Link className="nav-link" to="/signin">
                       Sign In
                     </Link>
+                  )}
+                  {userInfo && userInfo.isSeller && (
+                    // <div className="dropdown">
+                    //   <Link to="#admin">
+                    //     Seller <i className="fa fa-caret-down"></i>
+                    //   </Link>
+                    //   <ul className="dropdown-content">
+                    //     <li>
+                    //       <Link to="/productlist/seller">Products</Link>
+                    //     </li>
+                    //     <li>
+                    //       <Link to="/orderlist/seller">Orders</Link>
+                    //     </li>
+                    //   </ul>
+                    // </div>
+                    <NavDropdown title="Seller" id="admin-nav-dropdown">
+                      <LinkContainer to="/productlist/seller">
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/orderlist/seller">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
                   )}
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
@@ -168,6 +195,70 @@ function App() {
         </div>
         <main>
           <Container className="mt-3">
+            {/* <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-mdb-target="#carouselBasicExample"
+                  data-mdb-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-mdb-target="#carouselBasicExample"
+                  data-mdb-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-mdb-target="#carouselBasicExample"
+                  data-mdb-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+
+
+              <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                  <img src="https://akologic.info/wp-content/uploads/2018/05/2.jpg" class="d-block w-100" alt="Sunset Over the City" />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </div>
+                </div>
+
+
+                <div class="carousel-item">
+                  <img src="http://phama.com.au/wp-content/uploads/2021/06/FoodTank_agriculturesubsidiesworldbankreport.jpg" class="d-block w-200" alt="Canyon at Nigh" />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  </div>
+                </div>
+
+
+                <div class="carousel-item">
+                  <img src="https://images.squarespace-cdn.com/content/v1/59a706d4f5e2319b70240ef9/1598971164694-F75Y7VUAHC6TLFJXLCWF/veggies.jpg" class="d-block w-100" alt="Cliff Above a Stormy Sea" />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                  </div>
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div> */}
             <Routes>
               <Route
                 path="/admin/product/:id"
@@ -182,6 +273,9 @@ function App() {
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
+              {/* <Route path="/seller/:id" element={<SellerView />}></Route> */}
+              <Route path="/seller/:id" component={SearchView}></Route>
+              
               <Route
                 path="/map"
                 element={
@@ -249,6 +343,7 @@ function App() {
                 element={
                   <AdminRoute>
                     <OrderListView />
+                    exact
                   </AdminRoute>
                 }
               ></Route>
@@ -257,14 +352,42 @@ function App() {
                 element={
                   <AdminRoute>
                     <ProductListView />
+                    exact
                   </AdminRoute>
                 }
               ></Route>
+
+              <Route
+                path="/productlist/seller"
+                element={
+                  <SellerRoute>
+                    <ProductListView />
+                  </SellerRoute>
+                }
+              ></Route>
+
+              <Route
+                path="/orderlist/seller"
+                element={
+                  <SellerRoute         >
+                    <OrderListView />
+                  </SellerRoute>
+                }
+              ></Route>
+              {/* <SellerRoute
+                path="/productlist/seller"
+                element={ProductListView}
+              ></SellerRoute>
+              <SellerRoute
+                path="/orderlist/seller"
+                element={OrderListView}
+              ></SellerRoute> */}
             </Routes>
+            
           </Container>
         </main>
         <footer>
-          <div className="text-center"> All right reserved! </div>
+        <Footer></Footer>
         </footer>
       </div>
     </BrowserRouter>

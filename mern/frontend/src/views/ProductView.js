@@ -72,14 +72,14 @@ function ProductView() {
   ) : (
     <div>
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <img
             className="img-large"
             src={selectedImage ||  product.image}
             alt={product.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col md={5}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -93,9 +93,9 @@ function ProductView() {
                 numReviews={product.numReviews}
               ></Rating>
             </ListGroup.Item>
-            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+                <ListGroup.Item><strong><em>Price : ${product.price}</em></strong></ListGroup.Item>
                 <ListGroup.Item>
-                  <Row xs={1} md={2} className="g-2">
+                  <Row xs={2} md={2} className="g-2">
                     {[product.image, ...product.images].map((x) => (
                       <Col key={x}>
                         <Card>
@@ -105,7 +105,7 @@ function ProductView() {
                             variant="light"
                             onClick={() => setSelectedImage(x)}
                           >
-                            <Card.Img variant="top" src={x} alt="product" />
+                            <img variant="top" src={x} alt="product" className='img-thumbnail' />
                           </Button>
                         </Card>
                       </Col>
@@ -113,7 +113,7 @@ function ProductView() {
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
-              Description:
+                  <strong><em>Description:</em></strong>
               <p>{product.description}</p>
             </ListGroup.Item>
           </ListGroup>

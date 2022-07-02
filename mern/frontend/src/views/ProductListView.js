@@ -195,7 +195,7 @@ export default function ProductListView() {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                {/* <th>ID</th> */}
                                 <th>NAME</th>
                                 <th>PRICE</th>
                                 <th>CATEGORY</th>
@@ -206,7 +206,7 @@ export default function ProductListView() {
                         <tbody>
                             {products.map((product) => (
                                 <tr key={product._id}>
-                                    <td>{product._id}</td>
+                                    {/* <td>{product._id}</td> */}
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
