@@ -351,8 +351,7 @@ function App() {
                 path="/admin/products"
                 element={
                   <AdminRoute>
-                    <ProductListView />
-                    exact
+                    <ProductListView />               
                   </AdminRoute>
                 }
               ></Route>
@@ -386,7 +385,8 @@ function App() {
             
           </Container>
         </main>
-        <footer>
+        
+        <footer style={{marginTop:'100px'}}>
         <Footer></Footer>
         </footer>
       </div>
