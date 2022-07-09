@@ -24,7 +24,7 @@ function ContactForm() {
                 
             });
             let resJson = await res.json();
-            if (res.status === 200) {
+            if (res.status === 201) {
                 setName("");
                 setSurname("");
                 setEmail("");
@@ -69,7 +69,7 @@ function ContactForm() {
 
                 <button type="submit">Create</button>
 
-                {/* <div className="message">{err ? <p>{err}</p> : null}</div> */}
+                 <div className="message">{err ? <p>{err}</p> : null}</div> 
             </form>
         </div>
     );
