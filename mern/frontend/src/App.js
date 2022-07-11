@@ -42,6 +42,7 @@ import AboutView from "./views/AboutView";
 
 import Slider from "./components/Slider";
 
+
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { fullBox, cart, userInfo } = state;
@@ -221,6 +222,7 @@ function App() {
               <Route path="/products" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
+             
            
               {/* <Route path="/seller/:id" element={<SellerView />}></Route> */}
               <Route path="/seller/:id" component={SearchView}></Route>

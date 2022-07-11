@@ -185,3 +185,14 @@ button.thumbnail {
   min-height: 713px;
   max-height: 713px;
 }
+.us{
+  color:green
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: forestgreen;
+  opacity: 1; /* Firefox */
+}
+input{
+  color: tomato;
+  border:ridge 1px rgb(173, 75, 57);
+}
