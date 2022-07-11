@@ -1,7 +1,7 @@
-
+import { Link } from "react-router-dom";
 export default function Slider() {
     return (
-        <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+        <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel" style={{ maxHeight: "698px" }}>
 
             <div class="carousel-indicators">
                 <button
@@ -32,16 +32,20 @@ export default function Slider() {
                 <div class="carousel-item active">
                     <img src="https://akologic.info/wp-content/uploads/2018/05/2.jpg" class="d-block w-100" alt="Sunset Over the City" />
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
+                        <Link className="nav-link " style={{ color: "white" }} to="/products">                        <div className="btn btn-secondary">
+                            Products</div>
+                        </Link>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </div>
                 </div>
 
 
                 <div class="carousel-item">
-                    <img src="http://phama.com.au/wp-content/uploads/2021/06/FoodTank_agriculturesubsidiesworldbankreport.jpg" class="d-block w-200" alt="Canyon at Nigh" />
+                    <img src="http://phama.com.au/wp-content/uploads/2021/06/FoodTank_agriculturesubsidiesworldbankreport.jpg" class="d-block w-100" alt="Canyon at Nigh" />
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
+                        <Link className="nav-link " style={{ color: "white" }} to="/products">                        <div type="button" className="btn btn-secondary">
+                            Products</div>
+                        </Link>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
@@ -50,7 +54,9 @@ export default function Slider() {
                 <div class="carousel-item">
                     <img src="https://images.squarespace-cdn.com/content/v1/59a706d4f5e2319b70240ef9/1598971164694-F75Y7VUAHC6TLFJXLCWF/veggies.jpg" class="d-block w-100" alt="Cliff Above a Stormy Sea" />
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
+                        <Link className="nav-link " style={{ color: "white" }} to="/products">                        <button type="button" className="btn btn-secondary">
+                            Products</button>
+                        </Link>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div>
                 </div>

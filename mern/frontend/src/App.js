@@ -40,6 +40,8 @@ import Footer from "./components/Footer";
 import ContactForm from "./views/ContactForm";
 import AboutView from "./views/AboutView";
 
+import Slider from "./components/Slider";
+
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { fullBox, cart, userInfo } = state;
@@ -196,11 +198,13 @@ function App() {
             ))}
           </Nav>
         </div>
+
+
         <main>
-       
-          
- 
-          <Container className="mt-3">
+          <Routes>
+            <Route path="/" element={<Slider />} />
+          </Routes>
+       <Container className="mt-3">
             <Routes>
               <Route
                 path="/admin/product/:id"
@@ -214,9 +218,10 @@ function App() {
               <Route path="/cart" element={<CartView />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/about" element={<AboutView />} />
-              <Route path="/" element={<HomeView />} />
+              <Route path="/products" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
+           
               {/* <Route path="/seller/:id" element={<SellerView />}></Route> */}
               <Route path="/seller/:id" component={SearchView}></Route>
               
@@ -330,9 +335,9 @@ function App() {
           </Container>
         </main>
         
-        <footer style={{marginTop:'100px'}}>
+      
         <Footer></Footer>
-        </footer>
+        
       </div>
     </BrowserRouter>
   );
