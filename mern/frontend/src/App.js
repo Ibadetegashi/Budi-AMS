@@ -37,6 +37,7 @@ import MapView from "./views/MapView";
 import ProtectedRoute from './components/ProtectedRoute';
 import SellerRoute from './components/SellerRoute';
 import Footer from "./components/Footer";
+import ContactForm from "./views/ContactForm";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -270,6 +271,7 @@ function App() {
               ></Route>
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
+              <Route path="/contact" element={<ContactForm />} />
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
@@ -351,8 +353,7 @@ function App() {
                 path="/admin/products"
                 element={
                   <AdminRoute>
-                    <ProductListView />
-                    exact
+                    <ProductListView />               
                   </AdminRoute>
                 }
               ></Route>
@@ -386,7 +387,8 @@ function App() {
             
           </Container>
         </main>
-        <footer>
+        
+        <footer style={{marginTop:'100px'}}>
         <Footer></Footer>
         </footer>
       </div>

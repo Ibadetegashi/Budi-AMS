@@ -48,7 +48,7 @@ function HomeView() {
        <Helmet>
         <title>BUDI</title>
       </Helmet>
-      <h1>Featured Products</h1>
+      <h1></h1>
       <div className="products">
         {loading ? (
           <LoadingBox/>

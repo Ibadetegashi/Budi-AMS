@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AMS.API.Model;
+using Microsoft.AspNetCore.Cors;
 
 namespace AMS.API.Controllers
 {
+   
     [Route("api/[controller]")]
     [ApiController]
     public class ContactsController : ControllerBase
@@ -73,6 +75,7 @@ namespace AMS.API.Controllers
         }
 
         // POST: api/Contacts
+        [EnableCors("AllowOrigin")]
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)

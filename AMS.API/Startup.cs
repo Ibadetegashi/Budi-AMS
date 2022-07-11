@@ -1,5 +1,6 @@
 using AMS.API.Model;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -37,11 +38,24 @@ namespace AMS.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AMS.API", Version = "v1" });
             });
+            services.AddCors();
+            // Named Policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44316", "http://localhost:3000")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,13 +66,26 @@ namespace AMS.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            //app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials());
+            app.UseCors();
+            app.UseCors("AllowOrigin");
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+            //app.UseCors("AllowAll");
+            //app.UseMiddleware<CorsMiddleware>();
+            // END CORS
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+           
         }
     }
 }

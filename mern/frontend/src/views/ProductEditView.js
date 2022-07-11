@@ -62,6 +62,7 @@ export default function ProductEditScreen() {
     const [countInStock, setCountInStock] = useState('');
     const [brand, setBrand] = useState('');
     const [description, setDescription] = useState('');
+    const [seller, setSeller] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,6 +71,7 @@ export default function ProductEditScreen() {
                 const { data } = await axios.get(`/api/products/${productId}`);
                 setName(data.name);
                 setSlug(data.slug);
+                setSlug(data.seller);
                 setPrice(data.price);
                 setImage(data.image);
                 setImages(data.images);
@@ -97,6 +99,7 @@ export default function ProductEditScreen() {
                 {
                     _id: productId,
                     name,
+                    seller,
                     slug,
                     price,
                     image,
