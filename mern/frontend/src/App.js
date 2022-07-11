@@ -38,6 +38,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import SellerRoute from './components/SellerRoute';
 import Footer from "./components/Footer";
 import ContactForm from "./views/ContactForm";
+import AboutView from "./views/AboutView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -212,6 +213,7 @@ function App() {
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
               <Route path="/contact" element={<ContactForm />} />
+              <Route path="/about" element={<AboutView />} />
               <Route path="/" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
