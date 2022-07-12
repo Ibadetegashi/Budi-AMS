@@ -39,6 +39,7 @@ import SellerRoute from './components/SellerRoute';
 import Footer from "./components/Footer";
 import ContactForm from "./views/ContactForm";
 import AboutView from "./views/AboutView";
+import ContactListView from "./views/ContactListView";
 
 import Slider from "./components/Slider";
 
@@ -168,6 +169,9 @@ function App() {
                       </LinkContainer>
                       <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/contacts">
+                        <NavDropdown.Item>Contacts</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
                   )}
@@ -303,6 +307,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <ProductListView />               
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/contacts"
+                element={
+                  <AdminRoute>
+                    <ContactListView />
                   </AdminRoute>
                 }
               ></Route>
