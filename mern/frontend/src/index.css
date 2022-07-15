@@ -68,7 +68,7 @@ main {
   color: #a0a0a0;
 }
 .checkout-steps > div.active {
-  border-bottom: 0.2rem solid #f08000;
+  /* border-bottom: 0.2rem solid #f08000; */
   color: #f08000;
 }
 .text-bold {
@@ -180,4 +180,19 @@ main {
 }
 button.thumbnail {
   padding: 0;
+}
+.carousel-item img{
+  min-height: 713px;
+  max-height: 713px;
+}
+.us{
+  color:green
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: forestgreen;
+  opacity: 1; /* Firefox */
+}
+input{
+  color: tomato;
+  border:ridge 1px rgb(173, 75, 57);
 }
