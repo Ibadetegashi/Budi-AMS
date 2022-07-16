@@ -8,19 +8,12 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import GoogleLogin from "react-google-login";
 
 export default function SigninView() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-
-  const [loginData, setLoginData] = useState(
-    localStorage.getItem('loginData')
-      ? JSON.parse(localStorage.getItem('loginData'))
-      : null
-  );
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,28 +34,7 @@ export default function SigninView() {
       toast.error(getError(err));
     }
   };
-  const handleFailure = (result) => {
-    alert(result);
-  };
-  const handleLogin = async (googleData) => {
-    const res = await fetch('/api/google-login', {
-      method: 'POST',
-      body: JSON.stringify({
-        token: googleData.tokenId,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
 
-    const data = await res.json();
-    setLoginData(data);
-    localStorage.setItem('loginData', JSON.stringify(data));
-  };
-  const handleLogout = () => {
-    localStorage.removeItem('loginData');
-    setLoginData(null);
-  };
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
@@ -93,20 +65,6 @@ export default function SigninView() {
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Sign In</Button>
-          {loginData ? (
-            <div>
-              <h3>You logged in as {loginData.email}</h3>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          ) : (
-            <GoogleLogin
-              clientId={"318217546269-au1ntv1vgqkcutnoii4u9vqicpjbllfl.apps.googleusercontent.com"}
-              buttonText="Log in with Google"
-              onSuccess={handleLogin}
-              onFailure={handleFailure}
-              cookiePolicy={'single_host_origin'}
-            ></GoogleLogin>
-          )}
         </div>
         <div className="mb-3">
           New customer?{" "}
