@@ -1,62 +1,60 @@
-import React, { useContext, useEffect, useReducer } from 'react';
-import Axios from 'axios';
-import { toast } from 'react-toastify';
-import { getError } from '../utils';
-import LoadingBox from '../components/LoadingBox';
-import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Store } from '../Store';
-import CheckoutSteps from '../components/CheckoutSteps';
+import React, { useContext, useEffect, useReducer } from "react";
+import Axios from "axios";
+import { toast } from "react-toastify";
+import { getError } from "../utils";
+import LoadingBox from "../components/LoadingBox";
+import { Helmet } from "react-helmet-async";
+import { Link, useNavigate } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
+import { Store } from "../Store";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'CREATE_REQUEST':
+    case "CREATE_REQUEST":
       return { ...state, loading: true };
-    case 'CREATE_SUCCESS':
+    case "CREATE_SUCCESS":
       return { ...state, loading: false };
-    case 'CREATE_FAIL':
+    case "CREATE_FAIL":
       return { ...state, loading: false };
     default:
       return state;
   }
 };
 
-
 export default function PlaceOrderView() {
   const navigate = useNavigate();
-  
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-  
+
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
   });
-
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
-  if(cart.itemsPrice < 50 ){
+  if (cart.itemsPrice < 50) {
     cart.shippingPrice = round2(2);
-  }else{
-    cart.shippingPrice = cart.itemsPrice > 100 ? round2(1) : round2(0);
+  } else {
+    cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(1);
   }
-  
-  cart.taxPrice = round2(0.15 * cart.itemsPrice);
+
+  cart.taxPrice = round2(0.1 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
   const placeOrderHandler = async () => {
     try {
-      dispatch({ type: 'CREATE_REQUEST' });
+      dispatch({ type: "CREATE_REQUEST" });
 
       const { data } = await Axios.post(
-        '/api/orders',
+        "/api/orders",
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
@@ -72,19 +70,19 @@ export default function PlaceOrderView() {
           },
         }
       );
-      ctxDispatch({ type: 'CART_CLEAR' });
-      dispatch({ type: 'CREATE_SUCCESS' });
-      localStorage.removeItem('cartItems');
+      ctxDispatch({ type: "CART_CLEAR" });
+      dispatch({ type: "CREATE_SUCCESS" });
+      localStorage.removeItem("cartItems");
       navigate(`/order/${data.order._id}`);
     } catch (err) {
-      dispatch({ type: 'CREATE_FAIL' });
+      dispatch({ type: "CREATE_FAIL" });
       toast.error(getError(err));
     }
   };
 
   useEffect(() => {
     if (!cart.paymentMethod) {
-      navigate('/payment');
+      navigate("/payment");
     }
   }, [cart, navigate]);
 
@@ -106,7 +104,11 @@ export default function PlaceOrderView() {
                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                 {cart.shippingAddress.country}
               </Card.Text>
-              <Link to="/shipping">Edit</Link>
+              <Link to="/shipping">
+                <Button variant="info" type="button">
+                  Edit
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
 
@@ -116,7 +118,11 @@ export default function PlaceOrderView() {
               <Card.Text>
                 <strong>Method:</strong> {cart.paymentMethod}
               </Card.Text>
-              <Link to="/payment">Edit</Link>
+              <Link to="/payment">
+                <Button variant="info" type="button">
+                  Edit
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
 
@@ -132,7 +138,7 @@ export default function PlaceOrderView() {
                           src={item.image}
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
-                        ></img>{' '}
+                        ></img>{" "}
                         <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
                       <Col md={3}>
@@ -143,7 +149,11 @@ export default function PlaceOrderView() {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Link to="/cart">
+                <Button variant="info" type="button">
+                  Edit
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
