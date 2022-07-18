@@ -43,7 +43,7 @@ export default function OrderListView() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/orders/admin?page=${page} `, {
+        const { data } = await axios.get(`/api/orders `, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
 
@@ -110,7 +110,7 @@ export default function OrderListView() {
                 </tr>
               ))}
             </tbody>
-            <div>
+            {/* <div>
             {[...Array(pages).keys()].map((x) => (
               <Link
                 className={x + 1 === Number(page) ? "btn text-bold" : "btn"}
@@ -120,7 +120,7 @@ export default function OrderListView() {
                 {x + 1}
               </Link>
             ))}
-          </div>
+          </div> */}
           </Table>
         </>
       )}

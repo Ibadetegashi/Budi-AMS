@@ -7,6 +7,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../utils';
+import Table from "react-bootstrap/Table";
 import { toast } from 'react-toastify';
 
 const reducer = (state, action) => {
@@ -100,7 +101,7 @@ export default function UserListView() {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                <table className="table">
+                <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -120,7 +121,7 @@ export default function UserListView() {
                                 <td>
                                     <Button
                                         type="button"
-                                        variant="light"
+                                        variant="info"
                                         onClick={() => navigate(`/admin/user/${user._id}`)}
                                     >
                                         Edit
@@ -128,7 +129,7 @@ export default function UserListView() {
                                     &nbsp;
                                     <Button
                                         type="button"
-                                        variant="light"
+                                        variant="danger"
                                         onClick={() => deleteHandler(user)}
                                     >
                                         Delete
@@ -137,7 +138,7 @@ export default function UserListView() {
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                </Table>
             )}
         </div>
     );
