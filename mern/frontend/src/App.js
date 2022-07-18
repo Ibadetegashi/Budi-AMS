@@ -34,15 +34,15 @@ import axios from "axios";
 import SearchBox from "./components/SearchBox";
 import OrderListView from "./views/OrderListView";
 import MapView from "./views/MapView";
-import ProtectedRoute from './components/ProtectedRoute';
-import SellerRoute from './components/SellerRoute';
+import ProtectedRoute from "./components/ProtectedRoute";
+import SellerRoute from "./components/SellerRoute";
 import Footer from "./components/Footer";
 import ContactForm from "./views/ContactForm";
 import AboutView from "./views/AboutView";
 import ContactListView from "./views/ContactListView";
 
 import Slider from "./components/Slider";
-
+import HomePage from "./views/HomePage";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -71,7 +71,6 @@ function App() {
     fetchCategories();
   }, []);
   return (
-    
     <BrowserRouter>
       <div
         className={
@@ -80,16 +79,14 @@ function App() {
               ? "site-container active-cont d-flex flex-column full-box"
               : "site-container active-cont d-flex flex-column"
             : fullBox
-              ? "site-container d-flex flex-column full-box"
-              : "site-container d-flex flex-column"
+            ? "site-container d-flex flex-column full-box"
+            : "site-container d-flex flex-column"
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
-      
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-
               <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
@@ -101,7 +98,9 @@ function App() {
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
+                <Nav.Link href="/about" className="nav_link" >About Us</Nav.Link>
+                <Nav.Link href="/contact" className="nav_link">Contact</Nav.Link>
+                <SearchBox id="searchButton"/>
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     <i className="fa fa-shopping-cart" />
@@ -197,19 +196,22 @@ function App() {
                   to={`/search?category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
-                  <Nav.Link>{category}</Nav.Link>
+                  <Nav.Link className="nav_link">{category}</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
             ))}
           </Nav>
         </div>
 
-
         <main>
           <Routes>
-            <Route path="/" element={<Slider />} />
+            <Route path="/slider" element={<Slider />} />
           </Routes>
-       <Container className="mt-3">
+          <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutView />} />
+          </Routes>
+          <Container className="mt-3">
             <Routes>
               <Route
                 path="/admin/product/:id"
@@ -222,15 +224,13 @@ function App() {
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
               <Route path="/contact" element={<ContactForm />} />
-              <Route path="/about" element={<AboutView />} />
               <Route path="/products" element={<HomeView />} />
               <Route path="/signin" element={<SigninView />} />
               <Route path="/signup" element={<SignupView />} />
-             
-           
+
               {/* <Route path="/seller/:id" element={<SellerView />}></Route> */}
               <Route path="/seller/:id" component={SearchView}></Route>
-              
+
               <Route
                 path="/map"
                 element={
@@ -306,7 +306,7 @@ function App() {
                 path="/admin/products"
                 element={
                   <AdminRoute>
-                    <ProductListView />               
+                    <ProductListView />
                   </AdminRoute>
                 }
               ></Route>
@@ -331,7 +331,7 @@ function App() {
               <Route
                 path="/orderlist/seller"
                 element={
-                  <SellerRoute         >
+                  <SellerRoute>
                     <OrderListView />
                   </SellerRoute>
                 }
@@ -345,13 +345,10 @@ function App() {
                 element={OrderListView}
               ></SellerRoute> */}
             </Routes>
-            
           </Container>
         </main>
-        
-      
+
         <Footer></Footer>
-        
       </div>
     </BrowserRouter>
   );

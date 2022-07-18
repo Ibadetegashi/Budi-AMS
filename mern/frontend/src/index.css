@@ -82,9 +82,9 @@ main {
 .side-navbar {
   width: 240px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: -300px;
-  background-color: #100901;
+  background-color: #212529;
   transition: 0.5s;
 }
 
@@ -181,10 +181,10 @@ main {
 button.thumbnail {
   padding: 0;
 }
-.carousel-item img{
+/* .carousel-item img{
   min-height: 713px;
   max-height: 713px;
-}
+} */
 .us{
   color:green
 }
@@ -193,6 +193,21 @@ button.thumbnail {
   opacity: 1; /* Firefox */
 }
 input{
-  color: tomato;
-  border:ridge 1px rgb(173, 75, 57);
+  color: black;
+  border:ridge 1px green;
+  font-weight: bold;
+}
+.nav_link{
+  color: #bfbfbf;
+  width: 15%;
+}
+.nav_link:hover{
+  color: #ffff;
+}
+#q{
+  width: max-content;
+  min-width: 30%;
+}
+#box{
+  flex-wrap: nowrap;
 }

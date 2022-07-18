@@ -6,7 +6,7 @@ import aboutImg from "./tomato.jpg";
 const AboutView = () => {
   return (
     <Wrapper>
-      <div className="container">
+      {/* <div className="container"> */}
         <div class="about">
           <div class="title">
             <h1>
@@ -209,7 +209,7 @@ const AboutView = () => {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </Wrapper>
   );
 };
