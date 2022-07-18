@@ -115,7 +115,7 @@ productRouter.get('/', async (req, res) => {
     res.send(products);
 });
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10;
 productRouter.get(
     '/admin',
     isAuth,
