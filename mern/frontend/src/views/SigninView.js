@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 export default function SigninView() {
   const navigate = useNavigate();
@@ -15,11 +16,25 @@ export default function SigninView() {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [url, setUrl] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+  const responseGoogle = response => {
+    console.log(response);
+    setName(response.profileObj.name);
+    setEmail(response.profileObj.email);
+    setUrl(response.profileObj.imageUrl);
+    setLoginStatus(true);
+  };
+  const logout = () => {
+    console.log("logout");
+    setLoginStatus(false);
+  };
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -66,6 +81,29 @@ export default function SigninView() {
         <div className="mb-3">
           <Button type="submit">Sign In</Button>
         </div>
+        <div className="mb3">
+        {!loginStatus && (
+        <GoogleLogin
+          clientId="318217546269-au1ntv1vgqkcutnoii4u9vqicpjbllfl.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      )}
+      {loginStatus && (
+        <div>
+          <h2>Welcome {name}</h2>
+          <h2>Email: {email}</h2>
+          <img src={url} alt={name} />
+          <br />
+          <GoogleLogout
+            clientId="318217546269-au1ntv1vgqkcutnoii4u9vqicpjbllfl.apps.googleusercontent.com"
+            buttonText="Logout"
+            onLogoutSuccess={logout}
+          />
+        </div>
+      )}</div>
         <div className="mb-3">
           New customer?{" "}
           <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>

@@ -40,7 +40,6 @@ import Footer from "./components/Footer";
 import ContactForm from "./views/ContactForm";
 import AboutView from "./views/AboutView";
 import ContactListView from "./views/ContactListView";
-
 import Slider from "./components/Slider";
 import HomePage from "./views/HomePage";
 
@@ -298,7 +297,6 @@ function App() {
                 element={
                   <AdminRoute>
                     <OrderListView />
-                    exact
                   </AdminRoute>
                 }
               ></Route>

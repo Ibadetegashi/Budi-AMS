@@ -43,7 +43,7 @@ export default function OrderListView() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/orders/admin?page=${page} `, {
+        const { data } = await axios.get(`/api/orders?page=${page} `, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
 
@@ -115,7 +115,7 @@ export default function OrderListView() {
               <Link
                 className={x + 1 === Number(page) ? "btn text-bold" : "btn"}
                 key={x + 1}
-                to={`/admin/orders?page=${x + 1}`}
+                to={`?page=${x + 1}`}
               >
                 {x + 1}
               </Link>
