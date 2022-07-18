@@ -1,13 +1,14 @@
-import axios from "axios";
-import React, { useContext, useEffect, useReducer } from "react";
-import Button from "react-bootstrap/Button";
-import { Helmet } from "react-helmet-async";
-import { Link, useLocation,useNavigate } from "react-router-dom";
-import LoadingBox from "../components/LoadingBox";
-import MessageBox from "../components/MessageBox";
-import { Store } from "../Store";
-import { getError } from "../utils";
-import { toast } from "react-toastify";
+import axios from 'axios';
+import React, { useContext, useEffect, useReducer } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Helmet } from 'react-helmet-async';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { Store } from '../Store';
+import { getError } from '../utils';
+import Table from "react-bootstrap/Table";
+import { toast } from 'react-toastify';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -105,13 +106,14 @@ export default function UserListView() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
               <th>IS ADMIN</th>
+              <th>IS SELLER</th>
               <th>ACTIONS</th>
             </tr>
           </thead>
@@ -122,10 +124,11 @@ export default function UserListView() {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.isAdmin ? "YES" : "NO"}</td>
+                <td>{user.isSeller ? "YES" : "NO"}</td>
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="info"
                     onClick={() => navigate(`/admin/user/${user._id}`)}
                   >
                     Edit
@@ -133,7 +136,7 @@ export default function UserListView() {
                   &nbsp;
                   <Button
                     type="button"
-                    variant="light"
+                    variant="danger"
                     onClick={() => deleteHandler(user)}
                   >
                     Delete
@@ -153,7 +156,7 @@ export default function UserListView() {
               </Link>
             ))}
           </div>
-        </table>
+        </Table>
       )}
     </div>
   );

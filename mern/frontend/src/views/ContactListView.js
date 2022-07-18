@@ -64,13 +64,13 @@ class ContactListView extends React.Component {
                                         Edit
                                     </Button>
                                     &nbsp; */}
-                  <Button
+                  {/* <Button
                     type="button"
                     variant="danger"
                     // onClick={() => deleteHandler(item)}
                   >
                     Delete
-                  </Button>
+                  </Button> */}
                 </td>
               </tr>
             ))}
