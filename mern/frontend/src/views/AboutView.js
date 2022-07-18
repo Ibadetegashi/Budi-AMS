@@ -1,331 +1,107 @@
 import React from "react";
 import styled from "styled-components";
+import AboutView1 from "./AboutView1";
 
 import aboutImg from "./tomato.jpg";
 
 const AboutView = () => {
   return (
     <Wrapper>
-      {/* <div className="container"> */}
-        <div class="about">
-          <div class="title">
-            <h1>
-              <em>About Us</em>
-            </h1>
-          </div>
-          {/* <video
-          src="../images/video2.mp4"
-          width="398px"
-          height="476px"
-          loop
-          autoplay
-        ></video> */}
-        </div>
-        <div class="emp" id="three">
-          {/* <video src="../images/video1.mp4" width="500px" height="450px" loop autoplay></video> */}
-          <div class="data" id="data2">
-            <h1>
-              <em>Our Clients</em>
-            </h1>
+      <section class="home" id="home">
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio id
-              porro ab laboriosam odit ut amet, consectetur minus tempore
-              dolorum unde eaque animi esse dicta eligendi sit. Sunt ea,
-              cupiditate nesciunt perspiciatis fuga nam, hic beatae, odit illum
-              eligendi fugiat. <br /> Lorem ipsum dolor sit amet velit
-              recusandae est autem libero dolorem voluptatibus eaque temporibus
-              doloremque ut nostrum laudantium perspiciatis. <br /> <br /> Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Veniam, alias?
-              Aut eum id quisquam! Quisquam possimus porro harum at minima,
-              accusantium aspernatur tenetur reiciendis. Veritatis saepe harum
-              cupiditate numqum.
-            </p>
-          </div>
-        </div>
-        {/* <div class="box">
-          <div class="paragraf" id="paragraf1">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae
-              ullam illo quisquam non, assumenda deleniti ipsa ut nam voluptates
-              iusto. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Necessitatibus, in. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Est, odit officiis nihil reprehenderit
-              consequatur voluptate? Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Facilis, delectus?
-            </p>
-          </div>
-          <img src="./tomato.jpg" width="350" height="350em" alt="" />
-        </div>
-        <div class="box">
-          <img src="../images/logo2.jpg" width="350" height="350em" alt="" />
+        <div class="content">
 
-          <div class="paragraf" id="paragraf2">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae
-              ullam illo quisquam non, assumenda deleniti ipsa ut nam voluptates
-              iusto. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Necessitatibus, in. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Est, odit officiis nihil reprehenderit
-              consequatur voluptate? Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Facilis, delectus?
-            </p>
-          </div>
-        </div> */}
-        <div class="emp" id="two">
-          <div class="data" id="data1">
-            <h1>
-              <em>Our Vision</em>
-            </h1>
+          <h3> <span>Budi AMS </span> </h3>
+          <p class="info"> Agro Managment System </p>
+          <p class="text"> Agro System is a world leader in development and production of egg counter and related system.
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio id
-              porro ab laboriosam odit ut amet, consectetur minus tempore
-              dolorum unde eaque animi esse dicta eligendi sit. Sunt ea,
-              cupiditate nesciunt perspiciatis fuga nam, hic beatae, odit illum
-              eligendi fugiat. <br /> Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Iste cumque animi odit corporis esse deserunt
-              explicabo labore consectetur facere est. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat impedit itaque, velit
-              recusandae est autem libero dolorem voluptatibus eaque temporibus
-              doloremque ut nostrum laudantium perspiciatis. <br /> <br /> Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Veniam, alias?
-              Aut eum id quisquam! Quisquam possimus porro harum at minima,
-              accusantium aspernatur tenetur reiciendis. Veritatis saepe harum
-              cupiditate numquam eligendi.
-            </p>
-          </div>
-          <img
-            src="https://i.pinimg.com/564x/6d/fc/f4/6dfcf46cca6e55c522354dda018a9d1f.jpg"
-            width="350px"
-            height="400px"
-            alt=""
-          />
-        </div>
-        <div class="emp" id="three">
-          <img
-            src="https://i.pinimg.com/564x/30/cd/20/30cd20a749decca5632308e22cf5aff4.jpg"
-            width="350px"
-            height="400px"
-            alt=""
-          />
-          <div class="data" id="data2">
-            <h1>
-              <em>Our Approch</em>
-            </h1>
+            In the year 2000 Agro system was set up by 3 experts in the layer and breeder industry in order to develop the best and most precise egg counter in the world.
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio id
-              porro ab laboriosam odit ut amet, consectetur minus tempore
-              dolorum unde eaque animi esse dicta eligendi sit. Sunt ea,
-              cupiditate nesciunt perspiciatis fuga nam, hic beatae, odit illum
-              eligendi fugiat. <br /> Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Iste cumque animi odit corporis esse deserunt
-              explicabo labore consectetur facere est. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat impedit itaque, velit
-              recusandae est autem libero dolorem voluptatibus eaque temporibus
-              doloremque ut nostrum laudantium perspiciatis. <br /> <br /> Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Veniam, alias?
-              Aut eum id quisquam! Quisquam possimus porro harum at minima,
-              accusantium aspernatur tenetur reiciendis. Veritatis saepe harum
-              cupiditate numquam eligendi.
-            </p>
-          </div>
+            After 5 years in research and development, field test was done in Japan, which is the most difficult market for these devices.After thousands of installations in Japan the Mark 5 was released for the world market.After a few more years the N series was developed. </p>
+          <a href="#about" class="btn">About Us</a>
         </div>
-        <div class="meet-team">
-          <h1>
-            <em>-Meet Our Team-</em>
-          </h1>
-          <div class="team-content">
-            <div class=" t-one">
-              <img
-                src="https://millionairedating.onluxy.com/wp-content/uploads/2018/12/woman-smilling-in-red-top-and-red-lipstick-square-e1544061815643.jpg"
-                alt=""
-              />
-              <h3>Suzana Gashi</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere
-                fuga.
-              </p>
-              <a href="">
-                <button>Read More</button>
-              </a>
-            </div>
-            <div class="t-two">
-              <img
-                src="https://nanny.org/wp-content/uploads/2021/11/profile-square.jpeg"
-                alt=""
-              />
-              <h3>Sara Krasniqi</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere
-                fuga.
-              </p>
-              <a href="">
-                <button>Read More</button>
-              </a>
-            </div>
-            <div class="t-three">
-              <img
-                src="https://uniondocs.org/wp-content/uploads/2019/03/HK-SF-square-profile-pic.jpg"
-                alt=""
-              />
-              <h3>Engelbert Kabashi</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere
-                fuga.
-              </p>
-              <a href="">
-                <button>Read More</button>
-              </a>
-            </div>
-            <div class="t-three">
-              <img
-                src="            https://images.squarespace-cdn.com/content/v1/55f2354ce4b07b1c9b739f14/1526870553907-MP68SRHF3DXAS6TNHSL2/linkedin+headshot+brisbane.jpg"
-                alt=""
-              />
-              <h3>Zoja Gjeraj</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere
-                fuga.
-              </p>
-              <a href="">
-                <button>Read More</button>
-              </a>
-            </div>
-            <div class="t-three">
-              <img
-                src="https://digitalind.net/wp-content/uploads/2019/09/profile-square-extra-small.png"
-                alt=""
-              />
-              <h3>Faton Gashi</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere
-                fuga.
-              </p>
-              <a href="">
-                <button>Read More</button>
-              </a>
-            </div>
-          </div>
+
+        <div class="image">
+          <img src="images/home.png" alt=""/>
         </div>
-      {/* </div> */}
+        
+
+      </section>
+      <AboutView1></AboutView1>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  body {
-    margin: 0;
-    background-color: azure;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
 
-  .about {
-    height: 30em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    padding: 0;
-    background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/02/Water-Droplets-Flower-Background.jpg");
-  }
-  .title h1 {
-    font-size: 62px;
-    color: white;
-  }
-  // .about video {
-  //   border: double 2px pink;
-  //   background-color: pink;
-  //   mix-blend-mode: normal;
-  // }
 
-  .box {
-    display: flex;
-    justify-content: center;
 
-    flex-wrap: wrap;
-    height: 30em;
 
-    align-items: center;
-  }
-  .paragraf p {
-    padding: 4em;
-    color: white;
-    font-size: 1.5em;
-    width: 20em;
-  }
 
-  .emp {
-    display: flex;
-    align-items: center;
-    gap: 4em;
-    margin: 100px 250px;
-    margin-bottom: 50px;
-    color: palevioletred;
-  }
-  .data {
-    padding: 60px;
-    background-color: none;
-  }
-  #data1 {
-    padding-left: 0;
-  }
-  #data2 {
-    padding-right: 0;
-  }
-  .emp h1 {
-    color: palevioletred;
-  }
-  #one h2,
-  #three h2 {
-    color: rgb(0, 0, 0);
-  }
-  #one,
-  #three {
-    background-color: orange;
-    color: white;
-  }
-  #two {
-    background-color: black;
-    color: white;
-  }
-  .emp img {
-    border: 5px dotted orange;
-  }
+section{
+    padding:1rem 5%;
+    min-height: 100vh;
+}
 
-  .team-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .team-content img {
-    height: 10em;
-    width: 10em;
-  }
-  .team-content p {
-    width: 15em;
-    color: rgba(0, 0, 0, 0.563);
-  }
-  .team-content h3 {
-    color: green;
-  }
-  .team-content button {
-    padding: 0.5em;
-    font-size: 1em;
-    color: white;
-    background-color: palevioletred;
-    border: none;
+.home {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.home .image {
+  flex: 1 1 40rem;
+}
+
+.home .image img {
+  width: 100%;
+}
+
+.home .content {
+  flex: 1 1 40rem;
+}
+
+.home .content .hi {
+  font-size: 2rem;
+  color: #e38528;
+}
+
+.home .content h3 {
+  font-size: 2rem;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.home .content h3 span {
+  color: green;
+  text-transform: uppercase;
+}
+
+.home .content .info {
+  font-size: 2rem;
+  color: #111;
+  padding: 0.5rem 0;
+}
+
+.home .content .text {
+  font-size: 1rem;
+  color: #666;
+  padding: 0.5rem 0;
+}
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding:.5rem 2rem;
+    background:green;
+    color:#fff;
     cursor: pointer;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-  .team-content button:hover {
-    border-radius: 0;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
+    font-size: 1rem;
+}
+
+.btn:hover{
+    background:#111;
+    letter-spacing: .2rem;
+}
 `;
 export default AboutView;
