@@ -56,7 +56,7 @@ export default function OrderListView() {
       }
     };
     fetchData();
-  }, [userInfo]);
+  }, [page, userInfo]);
 
   return (
     <div>

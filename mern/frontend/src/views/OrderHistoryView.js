@@ -1,19 +1,25 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../utils';
 import Button from 'react-bootstrap/esm/Button';
+import Table from 'react-bootstrap/Table'
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, orders: action.payload, loading: false };
+      return { 
+        ...state, 
+        orders: action.payload.orders, 
+        page: action.payload.page,
+        pages: action.payload.pages,
+        loading: false };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -26,16 +32,21 @@ export default function OrderHistoryView() {
   const { userInfo } = state;
   const navigate = useNavigate();
 
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, orders, pages }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
   });
+
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search);
+  const page = sp.get("page") || 1;
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const { data } = await axios.get(
-          `/api/orders/mine`,
+          `/api/orders/mine?page=${page}`,
 
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
@@ -48,7 +59,7 @@ export default function OrderHistoryView() {
       }
     };
     fetchData();
-  }, [userInfo]);
+  }, [page, userInfo]);
   return (
     <div>
       <Helmet>
@@ -61,7 +72,8 @@ export default function OrderHistoryView() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <>
+          <Table striped bordered hover>
           <thead>
             <tr>
               <th>ID</th>
@@ -87,7 +99,7 @@ export default function OrderHistoryView() {
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="info"
                     onClick={() => {
                       navigate(`/order/${order._id}`);
                     }}
@@ -98,7 +110,19 @@ export default function OrderHistoryView() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
+        <div>
+            {[...Array(pages).keys()].map((x) => (
+              <Link
+                className={x + 1 === Number(page) ? "btn text-bold" : "btn"}
+                key={x + 1}
+                to={`/admin/orders/mine?page=${x + 1}`}
+              >
+                {x + 1}
+              </Link>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
