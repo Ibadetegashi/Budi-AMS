@@ -119,7 +119,7 @@ const PAGE_SIZE = 10;
 productRouter.get(
     '/admin',
     isAuth,
-    isAdmin,
+    isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
         const { query } = req;
         const page = query.page || 1;
